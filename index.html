@@ -2,14 +2,21 @@
 <html>
 <head>
     <title>Street View Address Search</title>
-    <script src="https://maps.googleapis.com/maps/api/js?key=API_KEY&callback=initMap&libraries=&v=weekly" async></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const scriptTag = document.createElement('script');
+        scriptTag.src = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&callback=initMap&libraries=&v=weekly`;
+        scriptTag.async = true;
+        document.head.appendChild(scriptTag);
+		});
+	</script>
     <style>
         #map {
             height: 400px;
             width: 100%;
         }
         #panorama {
-            height: 400px;
+            height: 400px; 	
             width: 100%;
         }
     </style>
