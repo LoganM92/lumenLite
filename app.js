@@ -22,16 +22,24 @@ function initMap() {
 }
 
 function geocodeAddress(geocoder, resultsMap) {
-    const address = document.getElementById("address").value;
+    var address = document.getElementById("address").value;
 
-    geocoder.geocode({ 'address': address }, (results, status) => {
+    geocoder.geocode({'address': address}, function(results, status) {
         if (status === 'OK') {
-            resultsMap.setCenter(results[0].geometry.location);
-            panorama.setPosition(results[0].geometry.location);
-            panorama.setPov({
-                heading: 34,
-                pitch: 10
+            map.setCenter(results[0].geometry.location);
+            var marker = new google.maps.Marker({
+                map: map,
+                position: results[0].geometry.location
             });
+            var panorama = new google.maps.StreetViewPanorama(
+                document.getElementById('panorama'), {
+                    position: results[0].geometry.location,
+                    pov: {
+                        heading: 34,
+                        pitch: 10
+                    }
+                });
+            map.setStreetView(panorama);
         } else {
             alert('Geocode was not successful for the following reason: ' + status);
         }

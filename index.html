@@ -12,21 +12,30 @@
 	</script>
     <style>
         #map {
-            height: 400px;
+            height: 450px;
             width: 100%;
         }
         #panorama {
-            height: 400px; 	
+            height: 450px; 	
             width: 100%;
         }
     </style>
 </head>
 <body>
-    <input id="address" type="text" placeholder="Enter an address" style="width: 300px; height: 20px; margin-top: 10px;">
+    <input id="address" type="text" placeholder="Enter an address" style="width: 300px; height: 25px; margin-top: 5px; margin-bottom: 10px; margin-left: 5px">
     <button onclick="geocodeAddress(geocoder, map)">Search</button>
     <div id="map"></div>
     <div id="panorama"></div>
 
+    <script>document.addEventListener('DOMContentLoaded', function() {
+        const input = document.getElementById('address');
+        input.addEventListener('keypress', function(event) {
+            if (event.keyCode === 13) {
+                geocodeAddress(geocoder, map);
+                event.preventDefault();
+            }
+        });
+    });</script>
     <script src="app.js"></script>
     <script src="config.js"></script>
 </body>
